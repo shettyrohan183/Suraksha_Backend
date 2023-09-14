@@ -1,4 +1,5 @@
 ﻿using Final_youtube.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,7 @@ namespace Final_youtube.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowAll")]
     public class IncidentController : ControllerBase
     {
         private readonly IncidentDbContext _context;

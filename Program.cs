@@ -21,6 +21,16 @@ namespace Final_youtube
                 options.UseNpgsql(builder.Configuration.GetConnectionString("pgconstr"));
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,7 +42,7 @@ namespace Final_youtube
 
             app.UseAuthorization();
 
-
+            app.UseCors("AllowAll");
             app.MapControllers();
 
             app.Run();
